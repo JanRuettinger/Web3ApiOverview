@@ -85,10 +85,12 @@ const Home: NextPage = () => {
                 dataFetched: true,
                 data: dataMoralis
             },
-            // zerion: {
+            // {
+            //     serviceName: 'Zerion',
             //     numItems: dataZerion.length,
             //     elapsedTime: timeDiffZerion,
-            //     dataFetched: true
+            //     dataFetched: true,
+            //     data: dataZerion
             // },
             {
                 serviceName: 'DeBank',

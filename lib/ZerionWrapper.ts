@@ -31,7 +31,7 @@ export async function getBalancesAllTokens(Address: string) {
           timeout: 60000,
           query: {
             api_token:
-              'Demo.ukEVQp6L5vfgxcz4sBke7XvS873GMYHy',
+              process.env.NEXT_PUBLIC_ZERION_API_KEY_REAL,
           },
         }),
       };
