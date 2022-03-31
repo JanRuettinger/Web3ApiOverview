@@ -20,6 +20,14 @@ type AnalyticsItem = {
     data: [];
 };
 
+// Function to abstract call to API away
+// Loading Spinner and disable button when APIs are being called
+// Add two example addresses
+// Add NFT calls
+// Integrate posthog
+// Write a few gotchas about each API
+// Figure out when Zapper return events
+
 // 1. Call: Get ETH Balance
 
 // 2. Call: Get ERC20 balance
@@ -31,20 +39,15 @@ type AnalyticsItem = {
 // 5. Call: Show which token is locked/staked
 
 const Home: NextPage = () => {
-    const AdressSergej = '0x55F5429343891f0a2b2A8da63a48E82DA8D9f2F6';
-    const AdressDame = '0x55F5429343891f0a2b2A8da63a48E82DA8D9f2F6';
-
     const [ERC20Analytics, setERC20Analytics] = useState<AnalyticsItem[]>([]);
 
-    const [adress, setAdress] = useState<string>(AdressSergej);
+    const [adress, setAdress] = useState<string>('');
 
     const GetAllERC20Tokens = async () => {
         let startTime = performance.now();
-        const dataZapper = await getBalancesAllTokensZapper(AdressSergej);
+        const dataZapper = await getBalancesAllTokensZapper('');
         let endTime = performance.now();
         const timeDiffZapper = endTime - startTime; //in ms
-        // console.log(' ##### DATA ZAPPER #####');
-        // console.log(dataZapper);
 
         startTime = performance.now();
         const dataMoralis = await getBalancesAllTokensMoralis(adress);
@@ -128,17 +131,27 @@ const Home: NextPage = () => {
                     </div>
 
                     <div className="mt-8">
-                        <div className="mx-auto w-3/6 rounded-md border-2 bg-teal-200 pt-4">
+                        <div className="mx-auto w-4/6 rounded-md border-2 bg-teal-200 pt-4">
                             <div className="ml-4 text-2xl font-semibold">
                                 Get all ERC 20 tokens of a user
                             </div>
-                            <div className="mx-auto mt-4 flex w-3/6 flex-row pb-4">
+                            <div className="ml-4 mt-2">
+                                <div className="text-xl">
+                                    Example addresses:
+                                </div>
+                                <ul className="ml-4 list-disc">
+                                    <li>
+                                        0x55F5429343891f0a2b2A8da63a48E82DA8D9f2F6
+                                    </li>
+                                    <li>
+                                        0x55F5429343891f0a2b2A8da63a48E82DA8D9f2F6
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="mx-auto mt-4 flex w-4/6 flex-row pb-4">
                                 <input
-                                    className="border-2 p-2"
+                                    className="w-4/6 rounded-md border-2 p-2"
                                     type="text"
-                                    defaultValue={
-                                        '0x55F5429343891f0a2b2A8da63a48E82DA8D9f2F6'
-                                    }
                                     onChange={(event) =>
                                         setAdress(event.target.value)
                                     }
