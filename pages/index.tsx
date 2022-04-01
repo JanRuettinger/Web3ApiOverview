@@ -40,8 +40,6 @@ type AnalyticsItem = {
 // 4. Call: Get ERC721 balance with meta data
 // 5. Call: Show which token is locked/staked
 
-// function ExecuteAPI
-
 async function executeAPICall(
     apiCall: (Address: string) => Promise<any>,
     address: string
