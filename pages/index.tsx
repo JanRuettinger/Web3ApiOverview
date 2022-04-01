@@ -125,7 +125,7 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main>
+            <main className="mx-auto">
                 <div className="mt-10">
                     <div className="text-center text-3xl font-bold">
                         Comparison of Blockchain APIs
@@ -180,10 +180,10 @@ const Home: NextPage = () => {
                                     Example addresses:
                                 </div>
                                 <ul className="ml-6 list-disc">
-                                    <li>
+                                    <li className="truncate">
                                         0x55F5429343891f0a2b2A8da63a48E82DA8D9f2F6
                                     </li>
-                                    <li>
+                                    <li className="truncate">
                                         0x1a5cdcFBA600e0c669795e0B65c344D5A37a4d5A
                                     </li>
                                 </ul>
