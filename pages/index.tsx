@@ -2,6 +2,16 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import {
+    AlchemyOverview,
+    CovalentOverview,
+    DeBankOverview,
+    MoralisOverview,
+    TheGraphOverview,
+    ZapperOverview,
+    ZerionOverview
+} from '../components/chainData';
+import IntroOverviewItem from '../components/IntroOverviewItem';
 import ResultItem from '../components/ResultItem';
 import ResultOverviewItem from '../components/ResultOverviewItem';
 import {
@@ -112,7 +122,7 @@ const Home: NextPage = () => {
     return (
         <div className="container mx-auto">
             <Head>
-                <title>API Test</title>
+                <title>Web3 API</title>
                 <meta name="description" content="" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
@@ -121,6 +131,45 @@ const Home: NextPage = () => {
                 <div className="mt-10">
                     <div className="text-center text-3xl font-bold">
                         Comparison of Blockchain APIs
+                    </div>
+                    <div>
+                        <IntroOverviewItem
+                            serviceName="Moralis"
+                            data={MoralisOverview}
+                            isOpenDefaultValue={true}
+                        />
+                        <IntroOverviewItem
+                            serviceName="Zapper"
+                            data={ZapperOverview}
+                        />
+
+                        <IntroOverviewItem
+                            serviceName="Covalent"
+                            data={CovalentOverview}
+                        />
+                        <IntroOverviewItem
+                            serviceName="DeBank"
+                            data={DeBankOverview}
+                        />
+                        <IntroOverviewItem
+                            serviceName="Zerion"
+                            data={ZerionOverview}
+                        />
+                        <IntroOverviewItem
+                            serviceName="Alchemy"
+                            data={AlchemyOverview}
+                        />
+                        <IntroOverviewItem
+                            serviceName="The Graph"
+                            data={TheGraphOverview}
+                        />
+                    </div>
+                    <div className="mt-8 text-xl">
+                        Now, try out some APIs for yourself, put in a valid
+                        ethereum address (mainnet) and check the results for the
+                        two commonly used end points: getERC20TokenBalance and
+                        getNFTBalance. You can see the number of returned items,
+                        how long the call took as well as the raw returned data.
                     </div>
 
                     <div className="mt-8">
@@ -132,12 +181,12 @@ const Home: NextPage = () => {
                                 <div className="text-xl">
                                     Example addresses:
                                 </div>
-                                <ul className="ml-4 list-disc">
+                                <ul className="ml-6 list-disc">
                                     <li>
                                         0x55F5429343891f0a2b2A8da63a48E82DA8D9f2F6
                                     </li>
                                     <li>
-                                        0x55F5429343891f0a2b2A8da63a48E82DA8D9f2F6
+                                        0x1a5cdcFBA600e0c669795e0B65c344D5A37a4d5A
                                     </li>
                                 </ul>
                             </div>
