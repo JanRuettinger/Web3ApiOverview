@@ -43,12 +43,12 @@ type AnalyticsItem = {
 // function ExecuteAPI
 
 async function executeAPICall(
-    apiCall: (Adress: string) => Promise<any>,
-    adress: string
+    apiCall: (Address: string) => Promise<any>,
+    address: string
 ) {
     let startTime = performance.now();
     try {
-        const data = await apiCall(adress);
+        const data = await apiCall(address);
         let endTime = performance.now();
         const timeDiff = endTime - startTime; //in ms
         return {
@@ -64,28 +64,28 @@ const Home: NextPage = () => {
     const [ERC20Analytics, setERC20Analytics] = useState<AnalyticsItem[]>([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    const [adress, setAdress] = useState<string>('');
+    const [address, setAddress] = useState<string>('');
 
     const GetAllERC20Tokens = async () => {
         setIsLoading(true);
         const dataZapper = await executeAPICall(
             getBalancesAllTokensZapper,
-            adress
+            address
         );
 
         const dataMoralis = await executeAPICall(
             getBalancesAllTokensMoralis,
-            adress
+            address
         );
 
         const dataCovalent = await executeAPICall(
             getBalancesAllTokensCovalent,
-            adress
+            address
         );
 
         const dataDeBank = await executeAPICall(
             getBalancesAllTokensDeBank,
-            adress
+            address
         );
 
         const AnalyticsData = [
@@ -195,7 +195,7 @@ const Home: NextPage = () => {
                                     className="w-4/6 rounded-md border-2 p-2"
                                     type="text"
                                     onChange={(event) =>
-                                        setAdress(
+                                        setAddress(
                                             event.target.value.toLowerCase()
                                         )
                                     }

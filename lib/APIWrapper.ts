@@ -6,9 +6,9 @@ import * as DeBank from './DeBankWrapper'
 
 
 
-export async function getBalancesAllTokensZapper(Adress: string){
+export async function getBalancesAllTokensZapper(Address: string){
 	try {
-		const data = await Zapper.getBalancesAllTokens(Adress)
+		const data = await Zapper.getBalancesAllTokens(Address)
 		return data
 	}
 	catch (error) {
@@ -18,9 +18,9 @@ export async function getBalancesAllTokensZapper(Adress: string){
 }
 
 
-export async function getBalancesAllTokensCovalent(Adress: string){
+export async function getBalancesAllTokensCovalent(Address: string){
 	try {
-		const data = await Covalent.getBalancesAllTokens(Adress)
+		const data = await Covalent.getBalancesAllTokens(Address)
 		return data
 	}
 	catch (error) {
@@ -29,9 +29,9 @@ export async function getBalancesAllTokensCovalent(Adress: string){
 	}
 }
 
-export async function getBalancesAllTokensMoralis(Adress: string){
+export async function getBalancesAllTokensMoralis(Address: string){
 	try {
-		const data = await Moralis.getBalancesAllTokens(Adress)
+		const data = await Moralis.getBalancesAllTokens(Address)
 		return data
 	}
 	catch (error) {
@@ -40,9 +40,9 @@ export async function getBalancesAllTokensMoralis(Adress: string){
 	}
 }
 
-export async function getBalancesAllTokensZerion(Adress: string){
+export async function getBalancesAllTokensZerion(Address: string){
 	try {
-		const data = await Zerion.getBalancesAllTokens(Adress)
+		const data = await Zerion.getBalancesAllTokens(Address)
 		// @ts-ignore
 		return data.payload.portfolio
 	}
@@ -53,9 +53,9 @@ export async function getBalancesAllTokensZerion(Adress: string){
 }
 
 
-export async function getBalancesAllTokensDeBank(Adress: string){
+export async function getBalancesAllTokensDeBank(Address: string){
 	try {
-		const data = await DeBank.getBalancesAllTokens(Adress)
+		const data = await DeBank.getBalancesAllTokens(Address)
 		return data
 	}
 	catch (error) {
