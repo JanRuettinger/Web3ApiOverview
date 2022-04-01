@@ -166,8 +166,9 @@ const Home: NextPage = () => {
                         Now, try out some APIs for yourself, put in a valid
                         ethereum address (mainnet) and check the results for the
                         two commonly used end points: getERC20TokenBalance and
-                        getNFTBalance. You can see the number of returned items,
-                        how long the call took as well as the raw returned data.
+                        getNFTBalance (coming soon). You can see the number of
+                        returned items, how long the call took as well as the
+                        raw returned data.
                     </div>
 
                     <div className="mt-8">

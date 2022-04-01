@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { HiChevronUp, HiChevronDown } from 'react-icons/hi';
 
 export type OverviewitemType = {
+    Link: string;
     Onboarding: string;
     SupportedChains: string;
     SupportedEndPoints: string;
@@ -26,7 +27,15 @@ export default function IntroOverviewItem({
     return (
         <div className="mt-2">
             <div className="flex flex-row justify-between">
-                <div className="text-xl font-bold">{serviceName}</div>
+                <div className="text-xl font-bold">
+                    <a
+                        href={data.Link}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                    >
+                        {serviceName}
+                    </a>
+                </div>
                 <button onClick={() => setIsOpen(!isOpen)}>
                     {isOpen ? (
                         <HiChevronDown className="h-8 w-8" />
@@ -38,6 +47,17 @@ export default function IntroOverviewItem({
             <div
                 className={`${isOpen == false ? 'hidden' : ''} overflow-hidden`}
             >
+                <div className="mt-2">
+                    <div className="underline">
+                        <a
+                            href={data.Link}
+                            target="_blank"
+                            rel="noreferrer noopener"
+                        >
+                            Link to Documentation
+                        </a>
+                    </div>
+                </div>
                 <div className="mt-2">
                     <div className="underline">Onboarding</div>
                     <div>{data.Onboarding}</div>
