@@ -171,7 +171,7 @@ const Home: NextPage = () => {
                     </div>
 
                     <div className="mt-8">
-                        <div className="mx-auto w-4/6 rounded-md border-2 bg-teal-200 pt-4">
+                        <div className="w-7/8 mx-auto rounded-md border-2 bg-teal-200 pt-4 md:w-4/6">
                             <div className="ml-4 text-2xl font-semibold">
                                 Get all ERC 20 tokens of a user
                             </div>
