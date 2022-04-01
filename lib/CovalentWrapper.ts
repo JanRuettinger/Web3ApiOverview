@@ -1,6 +1,10 @@
 import axios from 'axios'
 
-export async function getBalancesAllTokens(Address: string, fetchNFT: boolean, fetchNFTMetaData: boolean){
+export async function getBalancesAllTokens(Adress: string){
+
+	const fetchNFT = false
+	const fetchNFTMetaData = true
+
 	try {
 		const params = new URLSearchParams();
 		params.append('quote-currency', 'USD')
@@ -13,7 +17,7 @@ export async function getBalancesAllTokens(Address: string, fetchNFT: boolean, f
 		else {
 			throw Error("Covalent API KEY is missing")
 		}
-		const response = await axios.get(`https://api.covalenthq.com/v1/1/address/${Address}/balances_v2/`, { params });
+		const response = await axios.get(`https://api.covalenthq.com/v1/1/address/${Adress}/balances_v2/`, { params });
 		return response.data.data.items
 	}
 	catch (error) {

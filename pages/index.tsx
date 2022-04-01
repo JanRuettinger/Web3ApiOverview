@@ -6,18 +6,17 @@ import ResultItem from '../components/ResultItem';
 import ResultOverviewItem from '../components/ResultOverviewItem';
 import {
     getBalancesAllTokensZapper,
-    getBalancesAllTokensCovalent,
     getBalancesAllTokensMoralis,
     getBalancesAllTokensZerion,
-    getBalancesAllTokensDeBank
+    getBalancesAllTokensDeBank,
+    getBalancesAllTokensCovalent
 } from '../lib/APIWrapper';
 
 type AnalyticsItem = {
     serviceName: string;
-    numItems: number;
-    elapsedTime: number;
-    dataFetched: boolean;
-    data: [];
+    elapsedTime: number | undefined;
+    data: [] | undefined;
+    error: boolean;
 };
 
 // Function to abstract call to API away
@@ -40,82 +39,78 @@ type AnalyticsItem = {
 
 // function ExecuteAPI
 
+async function executeAPICall(
+    apiCall: (Adress: string) => Promise<any>,
+    adress: string
+) {
+    let startTime = performance.now();
+    try {
+        const data = await apiCall(adress);
+        let endTime = performance.now();
+        const timeDiff = endTime - startTime; //in ms
+        return {
+            returnedData: data,
+            elapsedTime: timeDiff
+        };
+    } catch {
+        return null;
+    }
+}
+
 const Home: NextPage = () => {
     const [ERC20Analytics, setERC20Analytics] = useState<AnalyticsItem[]>([]);
 
     const [adress, setAdress] = useState<string>('');
 
     const GetAllERC20Tokens = async () => {
-        let startTime = performance.now();
-        const dataZapper = await getBalancesAllTokensZapper(adress);
-        let endTime = performance.now();
-        const timeDiffZapper = endTime - startTime; //in ms
-
-        startTime = performance.now();
-        const dataMoralis = await getBalancesAllTokensMoralis(adress);
-        endTime = performance.now();
-        const timeDiffMoralis = endTime - startTime; //in ms
-
-        // startTime = performance.now();
-        // const dataZerion = await getBalancesAllTokensZerion(adress);
-        // endTime = performance.now();
-        // const timeDiffZerion = endTime - startTime; //in ms
-
-        startTime = performance.now();
-        const dataCovalent = await getBalancesAllTokensCovalent(
-            adress,
-            false,
-            true
+        const dataZapper = await executeAPICall(
+            getBalancesAllTokensZapper,
+            adress
         );
-        endTime = performance.now();
-        const timeDiffCovalent = endTime - startTime; //in ms
 
-        startTime = performance.now();
-        const dataDeBank = await getBalancesAllTokensDeBank(adress);
-        endTime = performance.now();
-        const timeDiffDeBank = endTime - startTime; //in ms
+        const dataMoralis = await executeAPICall(
+            getBalancesAllTokensMoralis,
+            adress
+        );
+
+        const dataCovalent = await executeAPICall(
+            getBalancesAllTokensCovalent,
+            adress
+        );
+
+        const dataDeBank = await executeAPICall(
+            getBalancesAllTokensDeBank,
+            adress
+        );
 
         const AnalyticsData = [
             {
                 serviceName: 'Covalent',
-                numItems: dataCovalent.length,
-                elapsedTime: timeDiffCovalent,
-                dataFetched: true,
-                data: dataCovalent
+                error: dataCovalent ? false : true,
+                elapsedTime: dataCovalent?.elapsedTime,
+                data: dataCovalent?.returnedData
             },
             {
                 serviceName: 'Moralis',
-                numItems: dataMoralis.length,
-                elapsedTime: timeDiffMoralis,
-                dataFetched: true,
-                data: dataMoralis
+                error: dataMoralis ? false : true,
+                elapsedTime: dataMoralis?.elapsedTime,
+                data: dataMoralis?.returnedData
             },
-            // {
-            //     serviceName: 'Zerion',
-            //     numItems: dataZerion.length,
-            //     elapsedTime: timeDiffZerion,
-            //     dataFetched: true,
-            //     data: dataZerion
-            // },
             {
                 serviceName: 'DeBank',
-                numItems: dataDeBank.length,
-                elapsedTime: timeDiffDeBank,
-                dataFetched: true,
-                data: dataDeBank
+                error: dataCovalent ? false : true,
+                elapsedTime: dataDeBank?.elapsedTime,
+                data: dataDeBank?.returnedData
             },
             {
                 serviceName: 'Zapper',
-                numItems: dataZapper.length,
-                elapsedTime: timeDiffZapper,
-                dataFetched: true,
-                data: dataZapper
+                error: dataZapper ? false : true,
+                elapsedTime: dataZapper?.elapsedTime,
+                data: dataZapper?.returnedData
             }
         ];
+
         setERC20Analytics(AnalyticsData);
-        // console.log(AnalyticsData);
-        // console.log('#####');
-        // console.log(dataDeBank);
     };
 
     return (
@@ -187,9 +182,9 @@ const Home: NextPage = () => {
                                         return (
                                             <ResultOverviewItem
                                                 key={key}
-                                                dataFetched={item.dataFetched}
                                                 serviceName={item.serviceName}
-                                                numItems={item.numItems}
+                                                error={item.error}
+                                                numItems={item.data?.length}
                                                 elapsedTime={item.elapsedTime}
                                             />
                                         );
@@ -205,10 +200,9 @@ const Home: NextPage = () => {
                                         return (
                                             <ResultItem
                                                 key={key}
-                                                dataFetched={item.dataFetched}
+                                                error={item.error}
                                                 serviceName={item.serviceName}
                                                 data={item.data}
-                                                numItems={item.numItems}
                                             />
                                         );
                                     })}
