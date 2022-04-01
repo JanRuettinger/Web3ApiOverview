@@ -19,22 +19,15 @@ type AnalyticsItem = {
     error: boolean;
 };
 
-// Function to abstract call to API away
-// Loading Spinner and disable button when APIs are being called
-// Add two example addresses
 // Add NFT calls
 // Integrate posthog
 // Write a few gotchas about each API
 // Figure out when Zapper return events
-
-// 1. Call: Get ETH Balance
+// Desribe why results in ERC20 are different
 
 // 2. Call: Get ERC20 balance
-
 // 3. Call: Get ERC721 balance without meta data
-
 // 4. Call: Get ERC721 balance with meta data
-
 // 5. Call: Show which token is locked/staked
 
 // function ExecuteAPI
@@ -59,10 +52,12 @@ async function executeAPICall(
 
 const Home: NextPage = () => {
     const [ERC20Analytics, setERC20Analytics] = useState<AnalyticsItem[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [adress, setAdress] = useState<string>('');
 
     const GetAllERC20Tokens = async () => {
+        setIsLoading(true);
         const dataZapper = await executeAPICall(
             getBalancesAllTokensZapper,
             adress
@@ -111,6 +106,7 @@ const Home: NextPage = () => {
         ];
 
         setERC20Analytics(AnalyticsData);
+        setIsLoading(false);
     };
 
     return (
@@ -156,12 +152,22 @@ const Home: NextPage = () => {
                                     }
                                 />
                                 <button
-                                    className="ml-2 rounded-md bg-slate-600 p-2 text-xl text-white"
+                                    className={`ml-2 rounded-md p-2 text-xl text-white ${
+                                        isLoading
+                                            ? 'bg-slate-300'
+                                            : 'bg-slate-600'
+                                    }`}
                                     onClick={GetAllERC20Tokens}
+                                    disabled={isLoading}
                                 >
                                     Submit
                                 </button>
                             </div>
+                            {isLoading && (
+                                <div className="my-4 text-center text-xl font-bold text-red-600">
+                                    Fetching data...
+                                </div>
+                            )}
                             <div className="bg-blue-200 p-4">
                                 <div className="text-xl font-semibold">
                                     Results Overview
@@ -219,6 +225,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-function item(item: any): import('react').ReactNode {
-    throw new Error('Function not implemented.');
-}
