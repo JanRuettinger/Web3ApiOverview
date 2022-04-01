@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { HiChevronUp, HiChevronDown } from 'react-icons/hi';
 
 export type OverviewitemType = {
+    Onboarding: string;
     SupportedChains: string;
     SupportedEndPoints: string;
     LongTermPerspective: string;
@@ -39,7 +40,7 @@ export default function IntroOverviewItem({
             >
                 <div className="mt-2">
                     <div className="underline">Onboarding</div>
-                    <div>{data.SupportedChains}</div>
+                    <div>{data.Onboarding}</div>
                 </div>
                 <div className="mt-2">
                     <div className="underline">Supported chains</div>
