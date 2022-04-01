@@ -122,7 +122,7 @@ const Home: NextPage = () => {
     return (
         <div className="container mx-auto">
             <Head>
-                <title>Web3 API</title>
+                <title>Web3 API Comparison</title>
                 <meta name="description" content="" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
