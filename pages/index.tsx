@@ -38,6 +38,8 @@ type AnalyticsItem = {
 
 // 5. Call: Show which token is locked/staked
 
+// function ExecuteAPI
+
 const Home: NextPage = () => {
     const [ERC20Analytics, setERC20Analytics] = useState<AnalyticsItem[]>([]);
 
@@ -45,7 +47,7 @@ const Home: NextPage = () => {
 
     const GetAllERC20Tokens = async () => {
         let startTime = performance.now();
-        const dataZapper = await getBalancesAllTokensZapper('');
+        const dataZapper = await getBalancesAllTokensZapper(adress);
         let endTime = performance.now();
         const timeDiffZapper = endTime - startTime; //in ms
 
@@ -153,7 +155,9 @@ const Home: NextPage = () => {
                                     className="w-4/6 rounded-md border-2 p-2"
                                     type="text"
                                     onChange={(event) =>
-                                        setAdress(event.target.value)
+                                        setAdress(
+                                            event.target.value.toLowerCase()
+                                        )
                                     }
                                 />
                                 <button
