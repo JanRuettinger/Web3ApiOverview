@@ -267,7 +267,7 @@ const Home: NextPage = () => {
                 </div>
             </main>
 
-            <footer></footer>
+            <footer className="mt-10"></footer>
         </div>
     );
 };
