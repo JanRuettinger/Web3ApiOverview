@@ -6,7 +6,7 @@ export const MoralisOverview: OverviewitemType = {
 	SupportedChains: "Ethereum (Mainnet, Ropsten, Ripkey, Goerli), Binance Smart Chain (Mainnet and Testnet), Polygon (Mainnet and Testnet), Avalanche (Mainnet and Testnet), Fantom (Mainnet), Solana & potentially some more which are not listed under supported chains in the documentation.",
 	SupportedEndPoints: "ERC20 Balance, NFT Balance & Transaction History",
 	LongTermPerspective: "The API is the core product of Moralis which is why the support and the infrastructure around their API is much better compared to others. ",
-	PersonalOpinion: "I recommend the Moralis API for multi purpose projects (more than DeFi) that want to get off the groudn quickly."
+	PersonalOpinion: "I recommend the Moralis API for multi purpose projects (more than DeFi) that want to get off the ground quickly."
 }
 
 export const ZapperOverview = {

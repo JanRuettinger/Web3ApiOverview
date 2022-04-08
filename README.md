@@ -1,34 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Live website: [web3apioverview](https://www.web3apioverview.xyz)
 
-## Getting Started
+## What is the repo about?
 
-First, run the development server:
+While working on our green wallet [Pangea](http://www.trypangea.com/) we tried different web3 APIs to fetch user data. It was a painful process to set everything up so we though it's helpful for the community to open source our work.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+We have added a little frontend with a simple getERC20Balance call to quickly see differences between APIs which you can see below:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![app_main](readme_images/app_main.png)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## What's included so far?
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+-   Zapper
+-   Covalent
+-   Moralis
+-   DeBank
+-   Zerion (doesn't work on website since api key only works locally)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Which APIs will be included next?
 
-## Learn More
+-   The Graph
+-   Alchemy
 
-To learn more about Next.js, take a look at the following resources:
+## Ideas for more detailed comparisons
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   Compare how quickly an API adapts to changes after a new block is mined
+-   Compare cross chain capabilities
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Want to contribute?
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+If you want to contribute, please raise an issue with a feature you want to add yourself or would like to have added or send me a message on twitter [@jan_ruettinger](http://twitter.com/jan_ruettinger).
